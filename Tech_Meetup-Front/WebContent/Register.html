@@ -1,0 +1,93 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Head -->
+<head>
+<title>Register User</title>
+<!-- Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="Sleek Login Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Meta-Tags -->
+<!-- Style --> 
+<!-- Fonts -->
+<!-- //Fonts -->
+<script type="text/javascript" >
+    var cAddress="";
+    var uName="";
+    var cName="";
+    var userEmail="";
+    var mNumber="";
+    var pass="";
+    var tSkills="";
+    var experience="";
+    
+    var json="";
+    var strJson="";
+        $(document).ready(function(){
+           $("#btn").click(function(){  
+               
+               console.log("inside click");
+               
+               cAddress=$("#companyAddress").val();
+               uName=$("#uname").val();
+               cName=$("#companyName").val();               
+               userEmail=$("#email").val();
+               mNumber=$("#mobileNumber").val();
+               pass=$("#password").val();
+               tSkills=$("#technicalSkills").val();
+               experience=$("#yearsOfExperience").val();
+               
+                json={company_address:cAddress,company:cName,email:userEmail,
+                		phone:mNumber,password:pass,technical_capabilities:tSkills,
+                        years_exp:experience,name:uName};
+                console.log("json: "+cName);
+                strJson=JSON.stringify(json);
+                console.log("stringyfyJson: "+strJson);
+               $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8085/Tech-MeetUps/addEmp",
+                    contentType: 'application/json',
+                    data: JSON.stringify(json)
+                })
+                .done(function(result) {
+                    JSON.stringify(result)
+                    alert("Registration Succesful: "+result);
+                    window.location.reload(true);
+                    });
+           });
+        });
+    </script>
+</head>
+<!-- //Head -->
+<!-- Body -->
+<body>
+    <h1>MEET UP LOGIN FORM</h1>
+    <h2>Log in to your Account</h2>
+    <div class="w3layoutscontaineragileits">
+        <form  method="post">
+  
+            <input type="text" Name="companyAddress" id="companyAddress" placeholder="companyAddress" required="">
+            <input type="text" Name="companyName" id="companyName" placeholder="companyName" required="">
+            <input type="text" Name="uname" id="uname" placeholder="uname" required="">
+            <input type="text" Name="email" id="email" placeholder="email" required="">
+            <input type="text" Name="mobileNumber" id="mobileNumber" placeholder="mobile number(int)" required="">
+            <input type="password" Name="password" id="password" placeholder="password" required="">
+            <input type="text" Name="technicalSkills" id="technicalSkills" placeholder="technical skills" required="">
+            <input type="text" Name="yearsOfExperience" id="yearsOfExperience" placeholder="years of experience(int)" required="">
+     
+            <div class="aitssendbuttonw3ls">
+                <input id="btn" type="button" value="login">
+                <p><a href="#">REGISTER NEW USER </a></p>
+                <div class="clear"></div>
+            </div>
+        </form>
+    </div>
+    <div class="w3footeragile">
+        <p> &copy; 2017 Meet Up Login Form. All Rights Reserved | Design by <a href="http://atmecs.com" target="_blank">Atmecs.com</a></p>
+    </div>
+</body>
+<!-- //Body -->
+</html>
